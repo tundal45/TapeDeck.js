@@ -22,8 +22,8 @@ jasmine.vcr = (function(){
   };
 
   var on = function(scope, invalidateInSeconds ){
-    invalidateInSeconds = invalidateInSeconds || 60*60*8;
-    
+    invalidateInSeconds = invalidateInSeconds || 28800; //8 hours
+   
     if(scope) 
       scope.after( function() { off(); });
 
@@ -33,9 +33,7 @@ jasmine.vcr = (function(){
 
       if(cannedResponse) {
         options.success(cannedResponse);
-        console.log('served canned response');
       } else {
-        console.log('served fresh response');
         var _success = options.success;
         options.success = function(response){
           storeResponse(options, response, invalidateInSeconds);

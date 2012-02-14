@@ -42,7 +42,7 @@ describe("jasmine-vcr", function(){
 
     });
 
-    it("expired request", function(){
+    it("expired request makes real call", function(){
       jasmine.vcr.on(this);
      
       localStorage.setItem('{"url":"/apicall"}', '{"expiresOn":"1900-02-13T22:50:01.532Z","response":{"data":9}}');
@@ -59,7 +59,7 @@ describe("jasmine-vcr", function(){
       });
     });
 
-    it("stored unexpired request", function(){
+    it("unexpired request returns locally stored response", function(){
       jasmine.vcr.on(this);
       var year = (new Date()).getFullYear() + 1;
       localStorage.setItem('{"url":"/apicall"}', '{"expiresOn":"' + year + '-02-13T22:50:01.532Z","response":{"data":100}}');
